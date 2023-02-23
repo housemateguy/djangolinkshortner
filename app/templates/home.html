@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">{{ block.super }}
+                        <p class="text-center">Enter a URL and we'll shorten it for you.</p>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}                            
+                            <div class="form-group">
+                                <label for="url">URL:</label>
+                                <input type="url" class="form-control" name="url" id="url" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="max_clicks">Maximum clicks:</label>
+                                <input type="number" class="form-control" name="max_clicks" id="max_clicks" min="0" value="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expiration_days">Expiration days:</label>
+                                <input type="number" class="form-control" name="expiration_days" id="expiration_days" min="0" value="0">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Shorten</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

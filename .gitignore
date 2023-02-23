@@ -1,0 +1,11 @@
+*/myenv/*
+/myenv/*
+
+# Python and Django related files
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.pyc
+*.egg-info
+*.egg
+*.log

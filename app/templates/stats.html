@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Stats{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Link stats</h1>
+
+                <p><strong>Original URL:</strong> {{ link.original_url }}</p>
+                <p><strong>Short URL:</strong> <a href="{{ link.short_url }}" target="_blank">{{ link.short_url }}</a></p>
+
+                {% if link.expiration_date %}
+                    <p><strong>Expiration date:</strong> {{ link.expiration_date }}</p>
+                {% endif %}
+
+                {% if clicks %}
+                    <h2>Clicks:</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for click in clicks %}
+                                <tr>
+                                    <td>{{ click.timestamp }}</td>
+                                    <td>{{ click.ip_address }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No clicks yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        setInterval(function() {
+          location.reload();
+        }, 3000);
+      </script>
+{% endblock %}
